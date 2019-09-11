@@ -41,17 +41,27 @@ class Usuario {
     public function loadById($id){
         $sql = new Sql();
 
-        $result = $sql->select("SELECT * FROM tb_usuario WHERE idusuario = :ID", ARRAY(":ID" = $id));
+        $result = $sql->select("SELECT * FROM tb_usuario WHERE idusuario = :ID", array(":ID" => $id));
         
         if (count($result) > 0 ) {
             $row = $result[0];
             
             $this->setIdusuario($row['idusuario']);
-            $this->setDeslogin($row['setDeslogin']);
-            $this->setDessenha($row['setDessenha']);
-            $this->setDtcadastro(new DateTime($row['setDtcadastro']));
+            $this->setDeslogin($row['deslogin']);
+            $this->setDessenha($row['dessenha']);
+            $this->setDtcadastro(new DateTime($row['dtcadastro']));
     
         }
+    }
+
+    public function __toString()
+    {
+        return json_encode(array(
+            "Idusuario"=>$this->getIdusuario(),
+            "deslogin"=>$this->getDeslogin(),
+            "dessenha"=>$this->getDessenha(),
+            "dtcadastro"=>$this->getDtcadastro()->format("d/m/Y H:i:s")          
+        ));
     }
 
 }
