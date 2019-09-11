@@ -82,6 +82,28 @@ class Usuario {
 
     }
 
+    //Depois eu faço 
+    // public function insert(){
+
+    //     $sql = new sql();
+    //     return $sql->select(""
+
+    // }
+
+    public function update($login, $password, $id){
+
+        $this->setDeslogin($login);
+        $this->setDessenha($password);
+
+        $sql = new sql();
+        $sql->query("UPDATE tb_usuario SET deslogin = :USUARIO, dessenha = :SENHA WHERE idusuario = :ID", array(
+            ":USUARIO"=>$this->getDeslogin(),
+            ":SENHA"=>$this->getDessenha(),
+            ":ID"=>$this->getIdusuario()
+        )); 
+
+    }
+
 }
 
 

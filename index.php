@@ -11,9 +11,14 @@
     // Carreta uma lista de usuários
     // $usuarios = Usuario::getlist();
 
-     $usuarios = Usuario::search("J");
+    
 
+    $usuario = new Usuario();
+    $usuario->loadById(1);
+ 
+    $usuario->update("juuuuuu","PROF123456", 1);
 
-echo json_encode($usuarios);
+echo  json_encode($usuario->getlist());
+
 
 ?>
